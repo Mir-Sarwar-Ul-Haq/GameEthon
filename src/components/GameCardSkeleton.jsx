@@ -8,13 +8,7 @@ import { useTheme } from "@emotion/react";
 function GameCardSkeleton() {
   const theme = useTheme();
   return (
-    <Card
-      sx={{
-        maxWidth: 380,
-        borderRadius: "20px",
-        backgroundColor: theme.palette.background.card,
-      }}
-    >
+    <>
       {/* Skeleton for the image */}
       <Skeleton variant="rectangular" height={240} />
 
@@ -40,7 +34,7 @@ function GameCardSkeleton() {
           <Skeleton variant="text" width={50} />
         </Stack>
       </CardContent>
-    </Card>
+      </>
   );
 }
 
