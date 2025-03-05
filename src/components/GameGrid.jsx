@@ -3,6 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
+import GameCardContainer from "./GameCardContainer";
 
 function GameGrid() {
   const { games, error, isLoading } = useGames();
@@ -15,12 +16,16 @@ function GameGrid() {
         {isLoading &&
           skeletons.map((skeleton) => (
             <Grid item xs={12} md={6} lg={4}>
-              <GameCardSkeleton key={skeleton} />
+              <GameCardContainer>
+                <GameCardSkeleton key={skeleton} />
+              </GameCardContainer>
             </Grid>
           ))}
         {games.map((game) => (
           <Grid item xs={12} md={6} lg={4}>
-            <GameCard key={game.id} game={game} />
+            <GameCardContainer>
+              <GameCard key={game.id} game={game} />
+            </GameCardContainer>
           </Grid>
         ))}
       </Grid>
