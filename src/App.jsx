@@ -6,9 +6,11 @@ import { useThemeContext } from "./theme/ThemeContextProvider";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
+import PlatformSelector from './components/PlatformSelector';
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedPlatform, setSelectedPlatform] = useState(null)
   const { theme } = useThemeContext();
   return (
     <ThemeProvider theme={theme}>
@@ -23,10 +25,11 @@ function App() {
           md={3}
           sx={{ display: { xs: "none", md: "block" } }}
         >
-          <GenreList onSelectGenre={(genre)=> setSelectedGenre(genre)}/>
+          <GenreList selectedGenre={selectedGenre} onSelectGenre={(genre)=> setSelectedGenre(genre)}/>
         </Grid>
         <Grid item xs={12} md={9}>
-          <GameGrid selectedGenre={selectedGenre}/>
+          <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={(platform)=> setSelectedPlatform(platform)}/>
+          <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}/>
         </Grid>
       </Grid>
     </ThemeProvider>
