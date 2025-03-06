@@ -4,7 +4,7 @@ import React from "react";
 
 function CriticScore({ score }) {
   const theme = useTheme();
-  let color = score > 75 ? "green" : score > 60 ? "yellow" : "";
+  let color = score > 75 ? theme.palette.score.primary : score > 60 ? theme.palette.score.secondary : "";
   return (
     <Paper
       sx={{ backgroundColor: theme.palette.background.paper }}

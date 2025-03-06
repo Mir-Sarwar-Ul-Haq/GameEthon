@@ -5,14 +5,14 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
-function GameGrid({ selectedGenre }) {
-  const { data, error, isLoading } = useGames(selectedGenre);
+function GameGrid({ selectedGenre, selectedPlatform }) {
+  const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
   const skeletons= Array.from(new Array(12));
 
   return (
     <>
       {error && <Typography>{error}</Typography>}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} pt={3}>
         {isLoading &&
           skeletons.map((skeleton) => (
             <Grid
