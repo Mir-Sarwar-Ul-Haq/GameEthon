@@ -10,16 +10,17 @@ import {
 import getCroppedImageUrl from "../services/image-url";
 import GenreListSkeleton from "./GenreListSkeleton";
 
-function GenreList() {
+function GenreList({onSelectGenre}) {
   const { data, error, isLoading } = useGenres();
-  const skeletons= Array.from(new Array(12));
-
+  const skeletons = Array.from(new Array(12));
+  
+  if (error) return null;
   return (
     <List>
       {isLoading &&
         skeletons.map((skeleton) => <GenreListSkeleton key={skeleton} />)}
       {data.map((genre) => (
-        <ListItemButton key={genre.id}>
+        <ListItemButton key={genre.id} onClick={()=>onSelectGenre(genre)}>
           <ListItemAvatar>
             <Avatar src={getCroppedImageUrl(genre.image_background)} />
           </ListItemAvatar>

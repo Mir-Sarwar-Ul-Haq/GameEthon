@@ -5,8 +5,8 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
-function GameGrid() {
-  const { data, error, isLoading } = useGames();
+function GameGrid({ selectedGenre }) {
+  const { data, error, isLoading } = useGames(selectedGenre);
   const skeletons= Array.from(new Array(12));
 
   return (
@@ -24,8 +24,8 @@ function GameGrid() {
               // xl={3}
               justifyItems={"center"}
             >
-              <GameCardContainer>
-                <GameCardSkeleton key={skeleton} />
+              <GameCardContainer key={skeleton}>
+                <GameCardSkeleton />
               </GameCardContainer>
             </Grid>
           ))}
@@ -39,8 +39,8 @@ function GameGrid() {
             // xl={3}
             justifyItems={"center"}
           >
-            <GameCardContainer>
-              <GameCard key={game.id} game={game} />
+            <GameCardContainer key={game.id}>
+              <GameCard game={game} />
             </GameCardContainer>
           </Grid>
         ))}

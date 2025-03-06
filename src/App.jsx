@@ -5,8 +5,10 @@ import { ThemeProvider } from "@emotion/react";
 import { useThemeContext } from "./theme/ThemeContextProvider";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { useState } from "react";
 
 function App() {
+  const [selectedGenre, setSelectedGenre] = useState(null);
   const { theme } = useThemeContext();
   return (
     <ThemeProvider theme={theme}>
@@ -21,10 +23,10 @@ function App() {
           md={3}
           sx={{ display: { xs: "none", md: "block" } }}
         >
-          <GenreList/>
+          <GenreList onSelectGenre={(genre)=> setSelectedGenre(genre)}/>
         </Grid>
         <Grid item xs={12} md={9}>
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre}/>
         </Grid>
       </Grid>
     </ThemeProvider>
