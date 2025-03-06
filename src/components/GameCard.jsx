@@ -20,7 +20,7 @@ function GameCard({ game }) {
         title={game.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" fontSize={18}>
           {game.name}
         </Typography>
         <Stack direction={"row"} justifyContent={"space-between"}>

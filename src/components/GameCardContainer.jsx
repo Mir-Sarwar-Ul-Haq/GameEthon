@@ -6,7 +6,7 @@ function GameCardContainer({children}) {
   return (
     <Card
       sx={{
-        maxWidth: 380,
+        width: "95%",
         borderRadius: "20px",
         backgroundColor: theme.palette.background.card,
       }}
