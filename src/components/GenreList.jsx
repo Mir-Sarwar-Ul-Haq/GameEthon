@@ -2,25 +2,22 @@ import React from "react";
 import useGenres from "../hooks/useGenres";
 import {
   Avatar,
-  CircularProgress,
   List,
   ListItemAvatar,
   ListItemButton,
   ListItemText,
-  Box,
 } from "@mui/material";
 import getCroppedImageUrl from "../services/image-url";
+import GenreListSkeleton from "./GenreListSkeleton";
 
 function GenreList() {
   const { data, error, isLoading } = useGenres();
+  const skeletons= Array.from(new Array(12));
 
   return (
     <List>
-      {isLoading && (
-        <Box sx={{ display: "flex" }} px={2}>
-          <CircularProgress sx={{color: "white"}} />
-        </Box>
-      )}
+      {isLoading &&
+        skeletons.map((skeleton) => <GenreListSkeleton key={skeleton} />)}
       {data.map((genre) => (
         <ListItemButton key={genre.id}>
           <ListItemAvatar>
