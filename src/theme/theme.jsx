@@ -46,7 +46,7 @@ export const getDesignTokens = (mode) =>
               secondary: yellow[600]
             },
             button: {
-              primary: grey[700],
+              primary: grey[300],
             }
           }),
     },
