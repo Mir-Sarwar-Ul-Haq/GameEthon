@@ -11,7 +11,7 @@ function CriticScore({ score }) {
       elevation={0}
     >
       <Typography fontWeight={"bolder"} mx={1} sx={{ color: { color } }}>
-        {score}
+        {score ? score : "--"}
       </Typography>
     </Paper>
   );

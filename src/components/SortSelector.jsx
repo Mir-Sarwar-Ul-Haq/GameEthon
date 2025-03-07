@@ -5,11 +5,21 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { useTheme } from "@emotion/react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import usePlatforms from "../hooks/usePlatforms";
 
-function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
+function  SortSelector({onSelecSordOrder, sortOrder}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const sortOrders = [
+    { value: "", label: "Relevance" },
+    { value: "-added", label: "Date Added" },
+    { value: "name", label: "Name" },
+    { value: "-released", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average Rating" },
+    { value: "-created", label: "Created" },
+    { value: "-updated", label: "Updated" },
+  ];
+  const currentSortOrder = sortOrders.find(order => order.value === sortOrder)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -17,9 +27,9 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
     setAnchorEl(null);
   };
   const theme = useTheme();
-  const { data, error } = usePlatforms();
+  //   const { data, error } = usePlatforms();
 
-  if (error) return null;
+  //   if (error) return null;
   return (
     <>
       <Button
@@ -30,11 +40,11 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
         onClick={handleClick}
         sx={{
           backgroundColor: theme.palette.button.primary,
-          // marginLeft: "10px",
+          //   marginLeft: "10px",
         }}
         variant="contained"
       >
-        {selectedPlatform?.name || "Platforms"}
+        Order by: {currentSortOrder?.label || "Relevance"}
         <ArrowDropDownIcon />
       </Button>
       <Menu
@@ -48,15 +58,16 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
         TransitionComponent={Fade}
         sx={{ mt: 1 }}
       >
-        {data.map((platform) => (
+        {sortOrders.map((order) => (
           <MenuItem
-            key={platform.id}
+            key={order.value}
+            value={order.value}
             onClick={() => {
-              onSelectPlatform(platform);
-              setAnchorEl(null);
+                onSelecSordOrder(order.value)
+                setAnchorEl(null)
             }}
           >
-            {platform.name}
+            {order.label}
           </MenuItem>
         ))}
       </Menu>
@@ -64,4 +75,4 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
   );
 }
 
-export default PlatformSelector;
+export default SortSelector;
