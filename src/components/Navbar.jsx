@@ -4,13 +4,17 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Logo from "../assets/logo.png";
-import { FormControlLabel, FormGroup, Stack } from "@mui/material";
+import { FormControlLabel, FormGroup, Stack, Typography } from "@mui/material";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import Search from "./Search";
 import ModeSwitch from "./ModeSwitch"; // Import the separated ModeSwitch component
 import GenreDrawer from "./GenreDrawer";
 
-export default function SearchAppBar({onSearch, onSelectGenre, selectedGenre }) {
+export default function SearchAppBar({
+  onSearch,
+  onSelectGenre,
+  selectedGenre,
+}) {
   const theme = useTheme();
   const { mode, toggleColorMode } = useThemeContext();
 
@@ -26,7 +30,14 @@ export default function SearchAppBar({onSearch, onSelectGenre, selectedGenre }) 
             justifyContent: "space-between",
           }}
         >
-          <Box sx={{ display: "flex", gap: "10px", alignItems:"center", justifyContent: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "10px",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -35,30 +46,44 @@ export default function SearchAppBar({onSearch, onSelectGenre, selectedGenre }) 
                 gap: "5px",
               }}
             >
-              <GenreDrawer onSelectGenre={onSelectGenre} selectedGenre={selectedGenre}/>
-              {/* <IconButton
-                size="large"
-                edge="start"
-                sx={{
-                  color: theme.palette.text.primary,
-                  display: { md: "none", sm: "block" },
-                }}
-                aria-label="menu"
-              >
-                <MenuIcon />
-              </IconButton> */}
-              <Box
-                component="img"
-                src={Logo}
-                alt="logo"
-                sx={{
-                  height: 50,
-                  marginRight: 2,
-                  display: { xs: "none", md: "block" },
-                }}
+              <GenreDrawer
+                onSelectGenre={onSelectGenre}
+                selectedGenre={selectedGenre}
               />
+              <Stack
+                direction={"row"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                sx={{
+                    display: { xs: "none", md: "flex" },
+                  }}
+                mr={2}
+                onClick={() => window.location.reload()}
+              >
+                <Box
+                  component="img"
+                  src={Logo}
+                  alt="logo"
+                  sx={{
+                    height: 50,
+                    display: { xs: "none", md: "block" },
+                  }}
+                />
+                <Typography
+                  sx={{
+                    background: "linear-gradient(to right, rgb(38, 140, 250) 33%, rgb(146, 109, 250) 50%, rgb(254, 77, 171) 67%)", // Half Blue, Half Pink
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    fontSize: "1.2rem",
+                  }}
+                  mt={2}
+                >
+                  GameEthon
+                </Typography>
+              </Stack>
             </Box>
-            <Search onSearch={onSearch}/>
+
+            <Search onSearch={onSearch} />
           </Box>
           <FormGroup>
             <FormControlLabel
