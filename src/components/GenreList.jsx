@@ -13,7 +13,7 @@ import {
 import getCroppedImageUrl from "../services/image-url";
 import GenreListSkeleton from "./GenreListSkeleton";
 
-function GenreList({ onSelectGenre, selectedGenre }) {
+function GenreList({ onSelectGenre, selectedGenre, setOpen }) {
   const { data, error, isLoading } = useGenres();
   const skeletons = Array.from(new Array(12));
   const theme = useTheme();
@@ -30,7 +30,10 @@ function GenreList({ onSelectGenre, selectedGenre }) {
         {data.map((genre) => (
           <ListItemButton
             key={genre.id}
-            onClick={() => onSelectGenre(genre)}
+            onClick={() => {
+              onSelectGenre(genre)
+              setOpen(false)
+            }}
             sx={{
               backgroundColor: `${
                 genre.id === selectedGenre?.id
