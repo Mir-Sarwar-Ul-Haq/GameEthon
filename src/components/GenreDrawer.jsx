@@ -1,8 +1,8 @@
-import { Box, Drawer, IconButton, useTheme } from "@mui/material";
+import { Box, Drawer, IconButton, useTheme, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import GenreList from "./GenreList";
-import logo from "../assets/logo.png";
+import Logo from "../assets/logo.png";
 
 function GenreDrawer({ onSelectGenre, selectedGenre }) {
   const theme = useTheme();
@@ -38,11 +38,37 @@ function GenreDrawer({ onSelectGenre, selectedGenre }) {
           },
         }}
       >
-        <Box component="img" width={60} src={logo} alt="logo" pl={2} py={2}/>
+        <Stack
+          direction={"row"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          onClick={() => window.location.reload()}
+        >
+          <Box
+            component="img"
+            src={Logo}
+            alt="logo"
+            sx={{
+              height: 50,
+            }}
+          />
+          <Typography
+            sx={{
+              background:
+                "linear-gradient(to right, rgb(38, 140, 250) 33%, rgb(146, 109, 250) 50%, rgb(254, 77, 171) 67%)", // Half Blue, Half Pink
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontSize: "1.2rem",
+            }}
+            mt={2}
+          >
+            GameEthon
+          </Typography>
+        </Stack>
         <GenreList
           onSelectGenre={onSelectGenre}
           selectedGenre={selectedGenre}
-          setOpen={()=>setOpen(false)}
+          setOpen={() => setOpen(false)}
         />
       </Drawer>
     </>
