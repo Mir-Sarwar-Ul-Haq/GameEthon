@@ -3,15 +3,14 @@ import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../assets/logo.png";
 import { FormControlLabel, FormGroup, Stack } from "@mui/material";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import Search from "./Search";
 import ModeSwitch from "./ModeSwitch"; // Import the separated ModeSwitch component
+import GenreDrawer from "./GenreDrawer";
 
-export default function SearchAppBar({onSearch}) {
+export default function SearchAppBar({onSearch, onSelectGenre, selectedGenre }) {
   const theme = useTheme();
   const { mode, toggleColorMode } = useThemeContext();
 
@@ -36,7 +35,8 @@ export default function SearchAppBar({onSearch}) {
                 gap: "5px",
               }}
             >
-              <IconButton
+              <GenreDrawer onSelectGenre={onSelectGenre} selectedGenre={selectedGenre}/>
+              {/* <IconButton
                 size="large"
                 edge="start"
                 sx={{
@@ -46,7 +46,7 @@ export default function SearchAppBar({onSearch}) {
                 aria-label="menu"
               >
                 <MenuIcon />
-              </IconButton>
+              </IconButton> */}
               <Box
                 component="img"
                 src={Logo}

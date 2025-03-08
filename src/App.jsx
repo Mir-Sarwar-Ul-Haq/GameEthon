@@ -26,6 +26,10 @@ function App() {
             onSearch={(searchText) =>
               setGameQuery((prevQuery) => ({ ...prevQuery, searchText }))
             }
+            selectedGenre={gameQuery.genre}
+            onSelectGenre={(genre) =>
+              setGameQuery((prevQuery) => ({ ...prevQuery, genre }))
+            }
           />
         </Grid>
         <Grid
@@ -55,7 +59,7 @@ function App() {
         </Grid>
         <Grid item xs={12} md={10}>
           <GameHeading gameQuery={gameQuery} />
-          <Stack spacing={1} direction={"row"} px={3} pt={3} pb={1}>
+          <Stack spacing={1} direction={{xs: "column", sm: "row"}} px={3} pt={3} pb={1}>
             <PlatformSelector
               selectedPlatform={gameQuery.platform}
               onSelectPlatform={(platform) =>
