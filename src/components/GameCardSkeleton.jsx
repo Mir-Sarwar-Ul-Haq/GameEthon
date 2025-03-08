@@ -3,7 +3,6 @@ import CardContent from "@mui/material/CardContent";
 import Skeleton from "@mui/material/Skeleton";
 import { Stack } from "@mui/material";
 
-
 function GameCardSkeleton() {
   return (
     <>
@@ -12,27 +11,27 @@ function GameCardSkeleton() {
 
       <CardContent>
         {/* Skeleton for the game title */}
-        <Skeleton variant="text" height={40} width="80%" />
 
         <Stack
           direction="row"
           justifyContent="space-between"
           alignItems="center"
-          sx={{ mt: 1 }}
+          sx={{ mt: 1, mb: 1 }}
         >
           {/* Skeleton for platform icons (example: circular) */}
-          <Stack direction="row" spacing={1}>
-          <Skeleton variant="circular" width={30} height={30} />
-          <Skeleton variant="circular" width={30} height={30} />
-          <Skeleton variant="circular" width={30} height={30} />
-          <Skeleton variant="circular" width={30} height={30} />
+          <Stack direction="row" spacing={1} >
+            <Skeleton variant="circular" width={30} height={30} />
+            <Skeleton variant="circular" width={30} height={30} />
+            <Skeleton variant="circular" width={30} height={30} />
+            <Skeleton variant="circular" width={30} height={30} />
           </Stack>
 
           {/* Skeleton for critic score */}
-          <Skeleton variant="text" width={50} />
+          <Skeleton variant="text" width={40} height={45} />
         </Stack>
+        <Skeleton variant="text" height={40} width="80%" />
       </CardContent>
-      </>
+    </>
   );
 }
 

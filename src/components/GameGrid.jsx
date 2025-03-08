@@ -7,15 +7,15 @@ import GameCardContainer from "./GameCardContainer";
 
 function GameGrid({ gameQuery }) {
   const { data, error, isLoading } = useGames(gameQuery);
-  const skeletons= Array.from(new Array(12));
+  const skeletons = Array.from(new Array(12));
 
+  if (error) return <Typography textAlign={"center"}>{error}</Typography>
   return (
-    <>
-      {error && <Typography>{error}</Typography>}
       <Grid container spacing={2} pt={3}>
         {isLoading &&
-          skeletons.map((skeleton) => (
+          skeletons.map((_, index) => (
             <Grid
+              key={index}
               item
               xs={12}
               sm={6}
@@ -24,13 +24,14 @@ function GameGrid({ gameQuery }) {
               // xl={3}
               justifyItems={"center"}
             >
-              <GameCardContainer key={skeleton}>
+              <GameCardContainer>
                 <GameCardSkeleton />
               </GameCardContainer>
             </Grid>
           ))}
         {data.map((game) => (
           <Grid
+            key={game.id}
             item
             xs={12}
             sm={6}
@@ -39,13 +40,12 @@ function GameGrid({ gameQuery }) {
             // xl={3}
             justifyItems={"center"}
           >
-            <GameCardContainer key={game.id}>
+            <GameCardContainer>
               <GameCard game={game} />
             </GameCardContainer>
           </Grid>
         ))}
       </Grid>
-    </>
   );
 }
 

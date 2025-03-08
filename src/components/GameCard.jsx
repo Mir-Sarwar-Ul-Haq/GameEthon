@@ -1,15 +1,12 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import { Stack } from "@mui/material";
-import { useTheme } from "@emotion/react";
 import getCroppedImageUrl from "../services/image-url";
+import Emoji from "./Emoji";
 
 function GameCard({ game }) {
   return (
@@ -20,20 +17,17 @@ function GameCard({ game }) {
         title={game.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" fontSize={18}>
-          {game.name}
-        </Typography>
-        <Stack direction={"row"} justifyContent={"space-between"}>
+        <Stack direction={"row"} justifyContent={"space-between"} mb={1}>
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={game.metacritic} />
         </Stack>
-      </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-        </CardActions> */}
+        <Typography gutterBottom variant="h5" component="div" fontSize={18}>
+          {game.name} 
+        </Typography>
+        <Emoji rating={game.rating_top}/>
+      </CardContent>  
     </>
   );
 }
