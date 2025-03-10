@@ -1,0 +1,16 @@
+/* Infinite Scroll flickering issue */
+.hide-scrollbar {
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    /* reserves space for the scrollbar */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
