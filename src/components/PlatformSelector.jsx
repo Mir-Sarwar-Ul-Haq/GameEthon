@@ -6,8 +6,9 @@ import Fade from "@mui/material/Fade";
 import { useTheme } from "@emotion/react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import usePlatforms from "../hooks/usePlatforms";
+import usePlatform from "../hooks/usePlatform";
 
-function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
+function PlatformSelector({ onSelectPlatform, selectedPlatformId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,6 +19,7 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
   };
   const theme = useTheme();
   const { data, error } = usePlatforms();
+  const selectedPlatform = usePlatform(selectedPlatformId)
 
   if (error) return null;
   return (
@@ -48,7 +50,7 @@ function PlatformSelector({ onSelectPlatform, selectedPlatform }) {
         TransitionComponent={Fade}
         sx={{ mt: 1 }}
       >
-        {data.map((platform) => (
+        {data?.results.map((platform) => (
           <MenuItem
             key={platform.id}
             onClick={() => {

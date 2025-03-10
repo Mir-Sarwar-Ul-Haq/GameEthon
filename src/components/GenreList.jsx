@@ -6,14 +6,13 @@ import {
   ListItemAvatar,
   ListItemButton,
   ListItemText,
-  ListSubheader,
   Typography,
   useTheme,
 } from "@mui/material";
 import getCroppedImageUrl from "../services/image-url";
 import GenreListSkeleton from "./GenreListSkeleton";
 
-function GenreList({ onSelectGenre, selectedGenre, setOpen }) {
+function GenreList({ onSelectGenre, selectedGenreId, setOpen }) {
   const { data, error, isLoading } = useGenres();
   const skeletons = Array.from(new Array(12));
   const theme = useTheme();
@@ -27,7 +26,7 @@ function GenreList({ onSelectGenre, selectedGenre, setOpen }) {
       <List>
         {isLoading &&
           skeletons.map((_, index) => <GenreListSkeleton key={index} />)}
-        {data.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItemButton
             key={genre.id}
             onClick={() => {
@@ -36,7 +35,7 @@ function GenreList({ onSelectGenre, selectedGenre, setOpen }) {
             }}
             sx={{
               backgroundColor: `${
-                genre.id === selectedGenre?.id
+                genre.id === selectedGenreId
                   ? theme.palette.secondary.main
                   : "inherit"
               }`,

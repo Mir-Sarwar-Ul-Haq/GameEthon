@@ -15,6 +15,7 @@ export const getDesignTokens = (mode) =>
               default: grey[900],
               paper: grey[800],
               card: grey[900],
+              button: grey[800]
             },
             text: {
               primary: "#fff",
@@ -36,6 +37,7 @@ export const getDesignTokens = (mode) =>
               default: "#f5f5f5", // Softer than pure white for better comfort
               paper: grey[200], // Clean white for paper surfaces
               card: grey[100], // Light grey for subtle contrast in cards
+              button: grey[200]
             },
             text: {
               primary: grey[900], // Dark text for readability

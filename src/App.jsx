@@ -51,9 +51,9 @@ function App() {
           }}
         >
           <GenreList
-            selectedGenre={gameQuery.genre}
+            selectedGenre={gameQuery.genreId}
             onSelectGenre={(genre) =>
-              setGameQuery((prevQuery) => ({ ...prevQuery, genre }))
+              setGameQuery((prevQuery) => ({ ...prevQuery, genreId: genre.id }))
             }
           />
         </Grid>
@@ -61,9 +61,9 @@ function App() {
           <GameHeading gameQuery={gameQuery} />
           <Stack spacing={1} direction={{xs: "column", sm: "row"}} px={3} pt={3} pb={1}>
             <PlatformSelector
-              selectedPlatform={gameQuery.platform}
+              selectedPlatformId={gameQuery.platformId}
               onSelectPlatform={(platform) =>
-                setGameQuery((prevQuery) => ({ ...prevQuery, platform }))
+                setGameQuery((prevQuery) => ({ ...prevQuery, platformId: platform.id }))
               }
             />
             <SortSelector
