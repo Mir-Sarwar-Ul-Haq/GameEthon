@@ -14,7 +14,7 @@ createRoot(document.getElementById("root")).render(
     <ThemeContextProvider>
       <QueryClientProvider client={queryClient}>
         <App />
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ThemeContextProvider>

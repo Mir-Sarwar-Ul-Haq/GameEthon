@@ -5,15 +5,15 @@ import { ThemeProvider } from "@emotion/react";
 import { useThemeContext } from "./theme/ThemeContextProvider";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
+
 function App() {
   // const [selectedGenre, setSelectedGenre] = useState(null);
   // const [selectedPlatform, setSelectedPlatform] = useState(null);
-  const [gameQuery, setGameQuery] = useState({});
+  // const [gameQuery, setGameQuery] = useState({});
   const { theme } = useThemeContext();
   const asideWidth = 240;
   const navbarHeight = 0;
@@ -22,15 +22,7 @@ function App() {
       <CssBaseline />
       <Grid container spacing={3}>
         <Grid item xs={12} sx={{ backgroundColor: "blue" }}>
-          <Navbar
-            onSearch={(searchText) =>
-              setGameQuery((prevQuery) => ({ ...prevQuery, searchText }))
-            }
-            selectedGenre={gameQuery.genre}
-            onSelectGenre={(genre) =>
-              setGameQuery((prevQuery) => ({ ...prevQuery, genre }))
-            }
-          />
+          <Navbar />
         </Grid>
         <Grid
           item
@@ -50,30 +42,21 @@ function App() {
             msOverflowStyle: "none",
           }}
         >
-          <GenreList
-            selectedGenre={gameQuery.genreId}
-            onSelectGenre={(genre) =>
-              setGameQuery((prevQuery) => ({ ...prevQuery, genreId: genre.id }))
-            }
-          />
+          <GenreList />
         </Grid>
         <Grid item xs={12} md={10}>
-          <GameHeading gameQuery={gameQuery} />
-          <Stack spacing={1} direction={{xs: "column", sm: "row"}} px={3} pt={3} pb={1}>
-            <PlatformSelector
-              selectedPlatformId={gameQuery.platformId}
-              onSelectPlatform={(platform) =>
-                setGameQuery((prevQuery) => ({ ...prevQuery, platformId: platform.id }))
-              }
-            />
-            <SortSelector
-              sortOrder={gameQuery.sortOrder}
-              onSelecSordOrder={(sortOrder) =>
-                setGameQuery((prevQuery) => ({ ...prevQuery, sortOrder }))
-              }
-            />
+          <GameHeading />
+          <Stack
+            spacing={1}
+            direction={{ xs: "column", sm: "row" }}
+            px={3}
+            pt={3}
+            pb={1}
+          >
+            <PlatformSelector />
+            <SortSelector/>
           </Stack>
-          <GameGrid gameQuery={gameQuery} />
+          <GameGrid/>
         </Grid>
       </Grid>
     </ThemeProvider>

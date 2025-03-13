@@ -1,10 +1,17 @@
-import { Box, Drawer, IconButton, useTheme, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  IconButton,
+  useTheme,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import GenreList from "./GenreList";
 import Logo from "../assets/logo.png";
 
-function GenreDrawer({ onSelectGenre, selectedGenre }) {
+function GenreDrawer() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   return (
@@ -65,11 +72,7 @@ function GenreDrawer({ onSelectGenre, selectedGenre }) {
             GameEthon
           </Typography>
         </Stack>
-        <GenreList
-          onSelectGenre={onSelectGenre}
-          selectedGenre={selectedGenre}
-          setOpen={() => setOpen(false)}
-        />
+        <GenreList setOpen={setOpen}/>
       </Drawer>
     </>
   );

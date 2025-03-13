@@ -1,5 +1,3 @@
-import React from "react";
-import useGenres from "../hooks/useGenres";
 import {
   Avatar,
   List,
@@ -9,19 +7,24 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import React from "react";
+import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
+import useGameQueryStore from "../store";
 import GenreListSkeleton from "./GenreListSkeleton";
 
-function GenreList({ onSelectGenre, selectedGenreId, setOpen }) {
+function GenreList({ setOpen = () => {} }) {
   const { data, error, isLoading } = useGenres();
   const skeletons = Array.from(new Array(12));
   const theme = useTheme();
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
 
   if (error) return null;
   return (
     <>
       <Typography variant="h5" pl={2}>
-          Genres
+        Genres
       </Typography>
       <List>
         {isLoading &&
@@ -30,8 +33,8 @@ function GenreList({ onSelectGenre, selectedGenreId, setOpen }) {
           <ListItemButton
             key={genre.id}
             onClick={() => {
-              onSelectGenre(genre)
-              setOpen(false)
+              setSelectedGenreId(genre.id);
+              setOpen(false);
             }}
             sx={{
               backgroundColor: `${

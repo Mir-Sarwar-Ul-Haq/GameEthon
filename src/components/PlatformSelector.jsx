@@ -7,8 +7,9 @@ import { useTheme } from "@emotion/react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import usePlatforms from "../hooks/usePlatforms";
 import usePlatform from "../hooks/usePlatform";
+import useGameQueryStore from "../store";
 
-function PlatformSelector({ onSelectPlatform, selectedPlatformId }) {
+function PlatformSelector() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -19,6 +20,8 @@ function PlatformSelector({ onSelectPlatform, selectedPlatformId }) {
   };
   const theme = useTheme();
   const { data, error } = usePlatforms();
+  const setPlatformId = useGameQueryStore(s=> s.setPlatformId)
+  const selectedPlatformId = useGameQueryStore(s=> s.gameQuery.platformId)
   const selectedPlatform = usePlatform(selectedPlatformId)
 
   if (error) return null;
@@ -54,7 +57,7 @@ function PlatformSelector({ onSelectPlatform, selectedPlatformId }) {
           <MenuItem
             key={platform.id}
             onClick={() => {
-              onSelectPlatform(platform);
+              setPlatformId(platform.id);
               setAnchorEl(null);
             }}
           >
