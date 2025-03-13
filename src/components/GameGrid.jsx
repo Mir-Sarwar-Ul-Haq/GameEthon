@@ -7,7 +7,7 @@ import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-function GameGrid({ gameQuery }) {
+function GameGrid() {
   const {
     data,
     error,
@@ -15,7 +15,7 @@ function GameGrid({ gameQuery }) {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useGames(gameQuery);
+  } = useGames();
   const skeletons = Array.from(new Array(12));
 
   if (error)

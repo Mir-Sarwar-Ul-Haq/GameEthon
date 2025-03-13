@@ -5,8 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { useTheme } from "@emotion/react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import useGameQueryStore from "../store";
 
-function  SortSelector({onSelecSordOrder, sortOrder}) {
+function  SortSelector() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const sortOrders = [
@@ -19,6 +20,8 @@ function  SortSelector({onSelecSordOrder, sortOrder}) {
     { value: "-created", label: "Created" },
     { value: "-updated", label: "Updated" },
   ];
+  const setSortOrder = useGameQueryStore(s=> s.setSortOrder)
+  const sortOrder = useGameQueryStore(s=> s.gameQuery.sortOrder)
   const currentSortOrder = sortOrders.find(order => order.value === sortOrder)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +66,7 @@ function  SortSelector({onSelecSordOrder, sortOrder}) {
             key={order.value}
             value={order.value}
             onClick={() => {
-                onSelecSordOrder(order.value)
+                setSortOrder (order.value)
                 setAnchorEl(null)
             }}
           >
