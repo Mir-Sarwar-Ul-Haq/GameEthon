@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import useGameQueryStore from "../store";
 
 // Rename the styled component to avoid name conflicts with the component
 const SearchWrapper = styled("div")(({ theme }) => ({
@@ -48,14 +49,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Search = ({onSearch}) => {
+const Search = () => {
   const theme = useTheme();
   const ref = useRef(null);
+  const setSearchText = useGameQueryStore(selector=> selector.setSearchText);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (ref.current) {
-      onSearch(ref.current.value);
+      setSearchText(ref.current.value);
     }
   };
 

@@ -10,11 +10,7 @@ import Search from "./Search";
 import ModeSwitch from "./ModeSwitch"; // Import the separated ModeSwitch component
 import GenreDrawer from "./GenreDrawer";
 
-export default function SearchAppBar({
-  onSearch,
-  onSelectGenre,
-  selectedGenre,
-}) {
+export default function SearchAppBar({}) {
   const theme = useTheme();
   const { mode, toggleColorMode } = useThemeContext();
 
@@ -46,17 +42,14 @@ export default function SearchAppBar({
                 gap: "5px",
               }}
             >
-              <GenreDrawer
-                onSelectGenre={onSelectGenre}
-                selectedGenre={selectedGenre}
-              />
+              <GenreDrawer />
               <Stack
                 direction={"row"}
                 justifyContent={"center"}
                 alignItems={"center"}
                 sx={{
-                    display: { xs: "none", md: "flex" },
-                  }}
+                  display: { xs: "none", md: "flex" },
+                }}
                 mr={2}
                 onClick={() => window.location.reload()}
               >
@@ -71,7 +64,8 @@ export default function SearchAppBar({
                 />
                 <Typography
                   sx={{
-                    background: "linear-gradient(to right, rgb(38, 140, 250) 33%, rgb(146, 109, 250) 50%, rgb(254, 77, 171) 67%)", // Half Blue, Half Pink
+                    background:
+                      "linear-gradient(to right, rgb(38, 140, 250) 33%, rgb(146, 109, 250) 50%, rgb(254, 77, 171) 67%)", // Half Blue, Half Pink
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     fontSize: "1.2rem",
@@ -83,7 +77,7 @@ export default function SearchAppBar({
               </Stack>
             </Box>
 
-            <Search onSearch={onSearch} />
+            <Search />
           </Box>
           <FormGroup>
             <FormControlLabel
